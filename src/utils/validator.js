@@ -1,7 +1,15 @@
 import { ERROR_MESSAGES } from '../constants/messages.js';
 import { MAX_TRY_COUNT } from '../constants/config.js';
 
-function validateCarNames(carNames) {
+export function validateCarNames(input) {
+  let carNames;
+
+  if (typeof input === 'string') {
+    carNames = input.split(',');
+  } else {
+    carNames = input;
+  }
+
   if (!carNames || carNames.length === 0) {
     throw new Error(ERROR_MESSAGES.EMPTY_NAME);
   }
@@ -18,14 +26,17 @@ function validateCarNames(carNames) {
   if (unique.size !== carNames.length) {
     throw new Error(ERROR_MESSAGES.DUPLICATE_NAME);
   }
+
+  return carNames;
 }
 
-function validateTryCount(input) {
+export function validateTryCount(input) {
   if (!input) {
     throw new Error(ERROR_MESSAGES.INVALID_TRY_COUNT_EMPTY);
   }
 
   const count = Number(input);
+
   if (Number.isNaN(count)) {
     throw new Error(ERROR_MESSAGES.INVALID_TRY_COUNT_NAN);
   }
@@ -34,9 +45,9 @@ function validateTryCount(input) {
     throw new Error(ERROR_MESSAGES.INVALID_TRY_COUNT_RANGE);
   }
 
-  if (count > MAX_TRY_COUNT) throw new Error(ERROR_MESSAGES.INVALID_TRY_COUNT_TOO_LARGE);
+  if (count > MAX_TRY_COUNT) {
+    throw new Error(ERROR_MESSAGES.INVALID_TRY_COUNT_TOO_LARGE);
+  }
 
   return count;
 }
-
-export { validateCarNames, validateTryCount };
