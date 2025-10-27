@@ -1,4 +1,5 @@
 import { ERROR_MESSAGES } from '../constants/messages.js';
+import { MAX_TRY_COUNT } from '../constants/config.js';
 
 function validateCarNames(carNames) {
   if (!carNames || carNames.length === 0) {
@@ -32,6 +33,8 @@ function validateTryCount(input) {
   if (count < 1) {
     throw new Error(ERROR_MESSAGES.INVALID_TRY_COUNT_RANGE);
   }
+
+  if (count > MAX_TRY_COUNT) throw new Error(ERROR_MESSAGES.INVALID_TRY_COUNT_TOO_LARGE);
 
   return count;
 }
