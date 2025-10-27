@@ -2,6 +2,7 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 import { readCarNames, readTryCount } from './io/input.js';
 import { validateCarNames, validateTryCount } from './utils/validator.js';
 import { initializeCars, playRound } from './core/racingGame.js';
+import printRoundResult from './io/output.js';
 
 class App {
   async run() {
@@ -18,6 +19,7 @@ class App {
 
       for (let i = 0; i < tryCount; i += 1) {
         cars = playRound(cars);
+        printRoundResult(cars);
       }
     } catch (error) {
       MissionUtils.Console.print(error.message);
