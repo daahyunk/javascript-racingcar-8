@@ -7,8 +7,8 @@ export function initializeCars(carNames) {
 
 export function playRound(cars) {
   return cars.map((car) => {
-    const n = MissionUtils.Random.pickNumberInRange(RANDOM_MIN, RANDOM_MAX);
-    if (n >= MOVE_THRESHOLD) {
+    const randomNumber = MissionUtils.Random.pickNumberInRange(RANDOM_MIN, RANDOM_MAX);
+    if (randomNumber >= MOVE_THRESHOLD) {
       return { ...car, position: car.position + 1 };
     }
     return car;
