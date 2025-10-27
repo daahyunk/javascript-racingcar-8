@@ -11,4 +11,5 @@ export const ERROR_MESSAGES = {
   INVALID_TRY_COUNT_EMPTY: '[ERROR] 시도 횟수를 입력해야 합니다.',
   INVALID_TRY_COUNT_NAN: '[ERROR] 시도 횟수는 숫자여야 합니다.',
   INVALID_TRY_COUNT_RANGE: '[ERROR] 시도 횟수는 1 이상의 숫자여야 합니다.',
+  EMPTY_CAR_LIST: '[ERROR] 경주할 자동차가 없습니다.',
 };
