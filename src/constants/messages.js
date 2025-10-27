@@ -12,4 +12,5 @@ export const ERROR_MESSAGES = {
   INVALID_TRY_COUNT_NAN: '[ERROR] 시도 횟수는 숫자여야 합니다.',
   INVALID_TRY_COUNT_RANGE: '[ERROR] 시도 횟수는 1 이상의 숫자여야 합니다.',
   EMPTY_CAR_LIST: '[ERROR] 경주할 자동차가 없습니다.',
+  UNEXPECTED_GAME_ERROR: '[ERROR] 게임 진행 중 오류가 발생했습니다.',
 };

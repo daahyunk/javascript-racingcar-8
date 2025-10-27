@@ -3,6 +3,7 @@ import { readCarNames, readTryCount } from './io/input.js';
 import { validateCarNames, validateTryCount } from './utils/validator.js';
 import { initializeCars, playRound, getWinners } from './core/racingGame.js';
 import { printRoundResult, printWinners } from './io/output.js';
+import { ERROR_MESSAGES } from './constants/messages.js';
 
 class App {
   async run() {
@@ -24,7 +25,14 @@ class App {
       const winners = getWinners(cars);
       printWinners(winners);
     } catch (error) {
-      MissionUtils.Console.print(error.message);
+      const knownMessages = Object.values(ERROR_MESSAGES);
+      const isKnownError = knownMessages.includes(error.message);
+
+      if (isKnownError) {
+        MissionUtils.Console.print(error.message);
+      } else {
+        MissionUtils.Console.print(ERROR_MESSAGES.UNEXPECTED_GAME_ERROR);
+      }
 
       if (process.env.NODE_ENV === 'test') {
         throw error;
