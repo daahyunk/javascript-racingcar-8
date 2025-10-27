@@ -1,6 +1,6 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 
-function printRoundResult(cars) {
+export function printRoundResult(cars) {
   cars.forEach(({ name, position }) => {
     const progress = '-'.repeat(position);
     MissionUtils.Console.print(`${name} : ${progress}`);
@@ -8,4 +8,7 @@ function printRoundResult(cars) {
   MissionUtils.Console.print('');
 }
 
-export default printRoundResult;
+export function printWinners(winners) {
+  const message = `최종 우승자 : ${winners.join(', ')}`;
+  MissionUtils.Console.print(message);
+}
