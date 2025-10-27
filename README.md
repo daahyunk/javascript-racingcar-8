@@ -69,15 +69,15 @@
 ---
 
 ## 프로그래밍 요구 사항
-- [ ] Node.js 22.19.0 이상 버전에서 실행 가능해야 한다.
-- [ ] 프로그램 실행의 시작점은 `App.js`의 `run()` 메서드이다.
-- [ ] `package.json` 파일은 수정할 수 없다.
-- [ ] `@woowacourse/mission-utils`에서 제공하는 API를 사용해야 한다.
-  - [ ] 랜덤 값: `MissionUtils.Random.pickNumberInRange(0, 9)`
-  - [ ] 입력/출력: `Console.readLineAsync()`, `Console.print()`
-- [ ] 외부 라이브러리를 추가하거나 삭제할 수 없다.
-- [ ] 함수는 한 가지 일만 하도록 작게 나눈다.
-- [ ] indent(들여쓰기) depth는 최대 2까지만 허용한다.
-- [ ] 삼항 연산자(`? :`)는 사용하지 않는다.
-- [ ] 프로그램 종료 시 `process.exit()`를 사용하지 않는다.
+- [x] Node.js 22.19.0 이상 버전에서 실행 가능해야 한다.
+- [x] 프로그램 실행의 시작점은 `App.js`의 `run()` 메서드이다.
+- [x] `package.json` 파일은 수정할 수 없다.
+- [x] `@woowacourse/mission-utils`에서 제공하는 API를 사용해야 한다.
+  - [x] 랜덤 값: `MissionUtils.Random.pickNumberInRange(0, 9)`
+  - [x] 입력/출력: `Console.readLineAsync()`, `Console.print()`
+- [x] 외부 라이브러리를 추가하거나 삭제할 수 없다.
+- [x] 함수는 한 가지 일만 하도록 작게 나눈다.
+- [x] indent(들여쓰기) depth는 최대 2까지만 허용한다.
+- [x] 삼항 연산자(`? :`)는 사용하지 않는다.
+- [x] 프로그램 종료 시 `process.exit()`를 사용하지 않는다.
 - [ ] Jest를 이용하여 테스트 코드를 작성하고 모든 테스트가 통과해야 한다.

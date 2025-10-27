@@ -1,4 +1,4 @@
-import { MissionUtils } from '@woowacourse/mission-utils';
+import { Console } from '@woowacourse/mission-utils';
 import { readCarNames, readTryCount } from './io/input.js';
 import { validateCarNames, validateTryCount } from './utils/validator.js';
 import { initializeCars, playRound, getWinners } from './core/racingGame.js';
@@ -8,35 +8,57 @@ import { ERROR_MESSAGES } from './constants/messages.js';
 class App {
   async run() {
     try {
-      const carNames = await readCarNames();
-      validateCarNames(carNames);
-
-      const tryCountInput = await readTryCount();
-      const tryCount = validateTryCount(tryCountInput);
+      const carNames = await this.getValidatedCarNames();
+      const tryCount = await this.getValidatedTryCount();
 
       let cars = initializeCars(carNames);
-      MissionUtils.Console.print('\n실행 결과');
 
-      for (let i = 0; i < tryCount; i += 1) {
-        cars = playRound(cars);
-        printRoundResult(cars);
-      }
+      Console.print('\n실행 결과');
+      cars = this.runRounds(cars, tryCount);
 
-      const winners = getWinners(cars);
-      printWinners(winners);
+      this.printFinalWinners(cars);
     } catch (error) {
-      const knownMessages = Object.values(ERROR_MESSAGES);
-      const isKnownError = knownMessages.includes(error.message);
+      this.handleError(error);
+    }
+  }
 
-      if (isKnownError) {
-        MissionUtils.Console.print(error.message);
-      } else {
-        MissionUtils.Console.print(ERROR_MESSAGES.UNEXPECTED_GAME_ERROR);
-      }
+  async getValidatedCarNames() {
+    const carNames = await readCarNames();
+    validateCarNames(carNames);
+    return carNames;
+  }
 
-      if (process.env.NODE_ENV === 'test') {
-        throw error;
-      }
+  async getValidatedTryCount() {
+    const tryCountInput = await readTryCount();
+    return validateTryCount(tryCountInput);
+  }
+
+  runRounds(cars, tryCount) {
+    let updatedCars = cars;
+    for (let i = 0; i < tryCount; i += 1) {
+      updatedCars = playRound(updatedCars);
+      printRoundResult(updatedCars);
+    }
+    return updatedCars;
+  }
+
+  printFinalWinners(cars) {
+    const winners = getWinners(cars);
+    printWinners(winners);
+  }
+
+  handleError(error) {
+    const knownMessages = Object.values(ERROR_MESSAGES);
+    const isKnownError = knownMessages.includes(error.message);
+
+    if (isKnownError) {
+      Console.print(error.message);
+    } else {
+      Console.print(ERROR_MESSAGES.UNEXPECTED_GAME_ERROR);
+    }
+
+    if (process.env.NODE_ENV === 'test') {
+      throw error;
     }
   }
 }
