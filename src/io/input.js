@@ -6,4 +6,9 @@ async function readCarNames() {
   return input.split(',').map((name) => name.trim());
 }
 
-export default readCarNames;
+async function readTryCount() {
+  const input = await MissionUtils.Console.readLineAsync(PROMPTS.TRY_COUNT);
+  return input.trim();
+}
+
+export { readCarNames, readTryCount };

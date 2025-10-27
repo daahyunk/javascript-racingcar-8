@@ -19,4 +19,21 @@ function validateCarNames(carNames) {
   }
 }
 
-export default validateCarNames;
+function validateTryCount(input) {
+  if (!input) {
+    throw new Error(ERROR_MESSAGES.INVALID_TRY_COUNT_EMPTY);
+  }
+
+  const count = Number(input);
+  if (Number.isNaN(count)) {
+    throw new Error(ERROR_MESSAGES.INVALID_TRY_COUNT_NAN);
+  }
+
+  if (count < 1) {
+    throw new Error(ERROR_MESSAGES.INVALID_TRY_COUNT_RANGE);
+  }
+
+  return count;
+}
+
+export { validateCarNames, validateTryCount };
